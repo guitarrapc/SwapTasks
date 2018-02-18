@@ -284,3 +284,4 @@ _Pvt_Extensions
 ########################
 artifacts/
 .dotnet/
+!build/
