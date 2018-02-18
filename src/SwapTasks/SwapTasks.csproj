@@ -15,9 +15,16 @@
     <PackageId>SwapTasks</PackageId>
     <Authors>guitarrapc</Authors>
     <Company>guitarrapc</Company>
-    <Description>MSBuild Task to provide SwapFile and clean up folder on publish.</Description>
-    <Copyright>guitarrapc</Copyright>
-    <Version>1.0.0</Version>
+    <Description>The MSBuild tasks to provide SwapFile and clean up folder on publish.</Description>
+    <Copyright>Copyright (c) 2018, guitarrapc</Copyright>
+    <Version>1.0.1</Version>
+    <PackageProjectUrl>https://github.com/guitarrapc/SwapTasks</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/guitarrapc/SwapTasks/blob/master/LICENSE.md</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/guitarrapc/SwapTasks</RepositoryUrl>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <PackageTags>MSBuild build tasks</PackageTags>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
