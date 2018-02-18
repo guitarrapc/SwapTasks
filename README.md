@@ -1,3 +1,6 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/lvqx1aaipttqtcaq?svg=true)](https://ci.appveyor.com/project/guitarrapc/swaptasks)
+[![NuGet status](https://img.shields.io/nuget/v/SwapTasks.svg)](https://www.nuget.org/packages/SwapTasks)
+
 ## SwapTasks
 
 MSBuild Custom Tasks for .NETCore
