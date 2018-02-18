@@ -2,6 +2,14 @@
 
 MSBuild Custom Tasks for .NETCore
 
+## Install
+
+You can install by [NuGet](https://www.nuget.org/packages/SwapTasks).
+
+```powershell
+PM> Install-Package SwapTasks
+```
+
 ## Supported Platform
 
 - .NETStandard 2.0
