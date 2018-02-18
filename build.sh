@@ -25,6 +25,6 @@ __exec dotnet pack -c Release ./src/${project}
 __exec dotnet msbuild /nologo '/t:Build;Publish' ./Example/PropExample
 
 # NuGetExample
-__exec dotnet publish ./Example/RestoreExample -c Debug
-__exec dotnet publish ./Example/RestoreExample /p:Trigger=hoge
-__exec dotnet publish ./Example/RestoreExample -c Debug /p:Trigger=piyo
+__exec dotnet publish ./Example/NuGetExample -c Debug
+__exec dotnet publish ./Example/NuGetExample /p:Trigger=hoge
+__exec dotnet publish ./Example/NuGetExample -c Debug /p:Trigger=piyo
