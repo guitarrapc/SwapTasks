@@ -1,0 +1,17 @@
+<Project DefaultTargets="Build">
+  <PropertyGroup>
+    <TempFolder>$([System.IO.Path]::GetTempPath())$([System.Guid]::NewGuid())</TempFolder>
+  </PropertyGroup>
+  
+  <Target Name="CopyTaskAssemblyToTempFolder" BeforeTargets="Build;Publish">
+    <Copy SourceFiles="..\..\src\SwapTasks\bin\Release\netstandard2.0\SwapTasks.dll" DestinationFolder="$(TempFolder)" />
+  </Target>
+  <UsingTask TaskName="MSBuildTasks.SwapFile" AssemblyFile="$(TempFolder)\SwapTasks.dll" />
+  <UsingTask TaskName="MSBuildTasks.CleanPublishArtifact" AssemblyFile="$(TempFolder)\SwapTasks.dll" />
+  <Target Name="Build">
+    <SwapFile Trigger="$(Trigger)" Fallback="Development" Configuration="$(Configuration)" FileName="app" Extension="config" SourceDir="$(MSBuildThisFileDirectory)" DestinationDir="$(MSBuildThisFileDirectory)" />
+  </Target>
+  <Target Name="Publish">
+    <CleanPublishArtifact MSBuildThisFileDirectory="$(MSBuildThisFileDirectory)" PublishDir="$(PublishDir)"/>
+  </Target>
+</Project>

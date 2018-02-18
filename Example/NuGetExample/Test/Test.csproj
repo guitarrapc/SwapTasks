@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SwapTasks" Version="1.0.0" />
+  </ItemGroup>
+
+  <Target Name="SwapTask" BeforeTargets="Build">
+    <SwapFile Trigger="$(Trigger)" Fallback="Development" Configuration="$(Configuration)" FileName="app" Extension="config" SourceDir="$(MSBuildThisFileDirectory)" DestinationDir="$(MSBuildThisFileDirectory)" />
+  </Target>
+
+  <Target Name="CleanPublish" AfterTargets="Build">
+    <CleanPublishArtifact MSBuildThisFileDirectory="$(MSBuildThisFileDirectory)" PublishDir="$(PublishDir)"/>
+  </Target>
+
+</Project>
