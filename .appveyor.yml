@@ -21,12 +21,14 @@ cache:
   - '%LocalAppData%\NuGet\Cache'
 
 # Patch true ensures that the assemblies version number gets set to the build version number
-assembly_info:
+dotnet_csproj:
   patch: true
-  file: '**\AssemblyInfo.*'
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
   assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
 nuget:
   project_feed: true
@@ -37,7 +39,7 @@ build_script:
 test: off
 
 artifacts:
-  - path: NuGet\*.nupkg
+  - path: artifacts\*.nupkg
     name: nupkgfiles
 
 deploy:

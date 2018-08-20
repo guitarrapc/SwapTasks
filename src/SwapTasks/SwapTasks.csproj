@@ -23,6 +23,7 @@
     <RepositoryUrl>https://github.com/guitarrapc/SwapTasks</RepositoryUrl>
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
     <PackageTags>MSBuild build tasks</PackageTags>
+    <PackageVersion>1.0.0.1</PackageVersion>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
