@@ -1,27 +1,27 @@
+version: 1.0.1.{build}
 configuration: Release
 image: Visual Studio 2017
 
-init:
-- ps: >-
-    if ($env:APPVEYOR_REPO_TAG -eq "true")
+pull_requests:
+  do_not_increment_build_number: true
 
-    {
-      Update-AppveyorBuild -Version "$($env:APPVEYOR_REPO_TAG_NAME).$($env:APPVEYOR_BUILD_NUMBER)"
-    }
+branches:
+  only:
+  - master
 
-    else
-
-    {
-      Update-AppveyorBuild -Version "1.0.0.$($env:APPVEYOR_BUILD_NUMBER)-$($env:APPVEYOR_REPO_COMMIT.substring(0,7))"
-    }
-
+  skip_commits:
+  files:
+    - '**/*.md'
 
 # Patch true ensures that the assemblies version number gets set to the build version number
 dotnet_csproj:
   patch: true
-  file: '**\*.csproj'
+  file: '**\*.csproj;**\*.props'
   version: '{version}'
   package_version: '{version}'
+  assembly_version: 1.0.0.0
+  file_version: '{version}'
+  informational_version: '{version}'
 
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
@@ -29,6 +29,10 @@ cache:
 
 nuget:
   project_feed: true
+  disable_publish_on_pr: true
+
+before_build:
+  - cmd: dotnet --info
 
 build_script:
   - ps: ./build.ps1
