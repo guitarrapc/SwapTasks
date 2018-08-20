@@ -1,4 +1,64 @@
+version: 1.0.{build}
+configuration: Release
+image: Visual Studio 2017
+
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+  - master
+
+skip_commits:
+  files:
+    - '**/*.md'
+
+# Patch true ensures that the assemblies version number gets set to the build version number
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj;**\*.props'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: 1.0.0.0
+  file_version: '{version}'
+  informational_version: '{version}'
+
+# preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+cache:
+  - '%LocalAppData%\NuGet\v3-cache -> **\*.csproj'
+
+nuget:
+  project_feed: true
+  disable_publish_on_pr: true
+
+before_build:
+  - cmd: dotnet --info
+
 build_script:
   - ps: ./build.ps1
+
 test: off
-os: Visual Studio 2017
+
+artifacts:
+  - path: artifacts\*.nupkg
+    name: nupkgfiles
+
+deploy:
+  - provider: GitHub
+    release: ver.$(appveyor_build_version)
+    description: '{version} released.'
+    auth_token:
+      secure: VsdMi0ZqJ44K0iAhqjFz8rBe8hbhQAzv3DdpPw8XLpN+T4dZhWR2xdBUf1iHo1yX
+    artifact: nupkgfiles
+    draft: false
+    prerelease: false
+    on:
+      branch: master
+      appveyor_repo_tag: true
+  - provider: NuGet
+    api_key:
+      secure: YUm99c5U4oxV7ee5vUuxzkcRV+8iFvKPTtorRBl0VRRqcMTmpck0wnKI6YeQUvJT
+    artifact: nupkgfiles
+    on:
+      branch: master
+      appveyor_repo_tag: true
